@@ -5,12 +5,12 @@ This is a tool to generate guitar tablature using JSON notatiion.
 ```json
 [
     {
-        chords: ["D major"],
-        pattern: "x---"
+        "chords": ["D major"],
+        "pattern": "x---"
     },
     {
-        chords: ["-57775", "577655"],
-        pattern: "x--x-x-"
+        "chords": ["-57775", "577655"],
+        "pattern": "x--x-x-"
     }
 ]
 ```
