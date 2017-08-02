@@ -38,4 +38,7 @@ The pattern string allows different rhythms to represented. Currently `4/4` is t
 - A four-to-the-floor pattern would be expressed as `x---x---x---x---`
 
 ## Demo
+
+The linked demo allows you to experiment with the tabbing syntax in real time.
+
 [http://json-to-tab.surge.sh/](http://json-to-tab.surge.sh/)
