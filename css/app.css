@@ -31,3 +31,7 @@ div.tab-section {
     width: 100%;
     padding: 0 10px;
 }
+
+a.email-link {
+    color: #111 !important;
+}
