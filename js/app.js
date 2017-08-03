@@ -135,6 +135,19 @@ function makeRandomPattern() {
   return pattern;
 }
 
+/**
+ * Check if the supplied character is valid
+ */
+function isValid(note) {
+  if (note === 'x' || note === 'X') return true;
+  if (note === '-') return true;
+  if (isNaN(note)) return false;
+  if (_.isNumber(note)) return true;
+  if (['a', 'b', 'c', 'd', 'e', 'f'].includes(note.toLowerCase())) return true;
+
+  return false;
+}
+
 function drawBar(chords, string, pattern, index) {
   pattern = makePatternFitBar(pattern);
 
@@ -168,8 +181,12 @@ function drawBar(chords, string, pattern, index) {
     }
 
     // Use hex to represent higher frets
-    if (note !== '-' && note !== 'x') {
+    if (!['x', 'X', '-'].includes(note)) {
       note = parseInt('0x'+note, 16);
+    }
+
+    if (!isValid(note)) {
+      note = '-'
     }
 
     let dontOutput = (note >= 10 && pattern[i-1] !== '-' && pattern[i-1] !== undefined);
@@ -187,7 +204,7 @@ Vue.component('tab-bar', {
   template:`
   <span>
     <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">
-      {{ index > 0 ? ' | ' : ''}} {{chord.length === 6 ? findByShape(chord) : chord}}
+      {{ index > 0 ? ' | ' : ''}} {{findByShape(chord)}}
     </span>
     <span class="tab-line">{{draw(strings.e)}}</span>
     <span class="tab-line">{{draw(strings.B)}}</span>
