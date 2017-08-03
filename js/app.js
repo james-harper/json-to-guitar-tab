@@ -85,8 +85,28 @@ const constants = {
   BEATS_PER_BAR: 4
 };
 
+/**
+ * Handle pattern padding and truncating
+ * to fit the desired length
+ */
+function makePatternFitBar(pattern) {
+  if (pattern.length < 1) { pattern = '-';}
+
+  let desiredPatternLength = constants.BEATS_PER_BAR * 4;
+  pattern = _.repeat(pattern, desiredPatternLength/pattern.length);
+
+  if (pattern.length < desiredPatternLength) {
+    let padLength = desiredPatternLength - pattern.length;
+    pattern += pattern.substring(0, padLength);
+  } else {
+    pattern = pattern.substring(0,desiredPatternLength);
+  }
+
+  return pattern;
+}
+
 function drawBar(chords, string, pattern, index) {
-  pattern = _.repeat(pattern, (constants.BEATS_PER_BAR * 4)/pattern.length);
+  pattern = makePatternFitBar(pattern);
 
   let note = '-';
   let output = '';
