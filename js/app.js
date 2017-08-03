@@ -170,7 +170,7 @@ function drawBar(chords, string, pattern, index) {
 Vue.component('tab-bar', {
   template:`
   <span>
-    <span v-for="(chord, index) in bar.chords" style="font-size:11px">
+    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">
       {{ index > 0 ? ' | ' : ''}} {{chord.length === 6 ? findByShape(chord) : chord}}
     </span>
     <span class="tab-line">{{draw(strings.e)}}</span>
@@ -181,7 +181,7 @@ Vue.component('tab-bar', {
     <span class="tab-line">{{draw(strings.E)}}</span>
   </span>
   `,
-  props: ['bar', 'index'],
+  props: ['bar', 'index', 'showChordNames'],
   methods: {
     draw(string) {
       this.convertNamedtoShapes();
@@ -221,14 +221,14 @@ Vue.component('tab-bar', {
 Vue.component('tab',{
   template: `
   <div class="tab-section">
-    <span v-for="(chunk, index) in chunked" class="row">
+    <span v-for="(chunk, index) in chunked" class="row tab-row">
       <span v-for="(bar, index) in chunk" class="bar">
-        <tab-bar :index="index" :bar="bar"></tab-bar>
+        <tab-bar :index="index" :bar="bar" :showChordNames="showChordNames"></tab-bar>
       </span>
     </span>
   </div>
   `,
-  props: ['progression'],
+  props: ['progression', 'showChordNames'],
   computed: {
     chunked() {
       return _.chunk(this.progression,constants.BEATS_PER_BAR);
