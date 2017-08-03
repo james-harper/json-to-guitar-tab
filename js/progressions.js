@@ -1,7 +1,7 @@
 const progression = [
   {
     chords: ['D major'],
-    pattern: 'x-----'
+    pattern: 'x-------'
   },
   {
     chords: ['577655'],
