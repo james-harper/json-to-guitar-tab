@@ -217,10 +217,16 @@ Vue.component('tab',{
   }
 });
 
+const examples = [
+  progression,
+  progression_1,
+  progression_2,
+];
+
 new Vue({
   el: "#app",
   data: {
-    json: JSON.stringify(progression)
+    json: JSON.stringify(_.sample(examples))
   },
   computed: {
     progression() {
