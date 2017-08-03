@@ -105,6 +105,20 @@ function makePatternFitBar(pattern) {
   return pattern;
 }
 
+/**
+ * Randomly generate a rhythmic pattern
+ */
+function makeRandomPattern() {
+  let desiredPatternLength = constants.BEATS_PER_BAR * 4;
+  let pattern = 'x';
+
+  for (let i = 0; i < desiredPatternLength - 1; i++) {
+    pattern += (_.random(1) > 0) ? 'x' : '-';
+  }
+
+  return pattern;
+}
+
 function drawBar(chords, string, pattern, index) {
   pattern = makePatternFitBar(pattern);
 
@@ -171,6 +185,11 @@ Vue.component('tab-bar', {
   methods: {
     draw(string) {
       this.convertNamedtoShapes();
+
+      if (this.bar.pattern.toLowerCase() === 'random') {
+        this.bar.pattern = makeRandomPattern();
+      }
+
       return drawBar(this.bar.chords, string, this.bar.pattern, this.index);
     },
     convertNamedtoShapes() {
