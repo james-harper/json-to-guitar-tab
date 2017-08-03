@@ -47,7 +47,7 @@ const findByName = function(name) {
   let root;
   let tonality;
   let extensions = [
-    7, 'dim', 'maj7', 'min7',
+    5, 7, 'dim', 'maj7', 'min7',
   ];
 
   name = name.replace(/\s/g, splitBy);
@@ -202,6 +202,7 @@ Vue.component('tab-bar', {
         if (chord.includes('maj7')) shapes = findByName(chord);
         if (chord.includes('min7')) shapes = findByName(chord);
         if (chord.includes(' 7')) shapes = findByName(chord);
+        if (chord.includes(' 5')) shapes = findByName(chord);
         if (chord.includes('dim')) shapes = findByName(chord);
 
         if (shapes.length) {
