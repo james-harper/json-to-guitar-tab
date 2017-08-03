@@ -137,7 +137,7 @@ Vue.component('tab-bar', {
   template:`
   <span>
     <span v-for="(chord, index) in bar.chords" style="font-size:11px">
-      {{ index > 0 ? ' | ' : ''}} {{findByShape(chord)}}
+      {{ index > 0 ? ' | ' : ''}} {{chord.length === 6 ? findByShape(chord) : chord}}
     </span>
     <span class="tab-line">{{draw(strings.e)}}</span>
     <span class="tab-line">{{draw(strings.B)}}</span>
