@@ -1,4 +1,36 @@
 /**
+ * Chord types that are currently supported
+ */
+const supportedChords = [
+  'major',
+  'minor',
+  'dim',
+  '5',
+  '7',
+  'maj7',
+  'min7',
+];
+
+/**
+ * Guitar strings in standard tuning
+ */
+const strings = {
+  e: 'e',
+  B: 'B',
+  G: 'G',
+  D: 'D',
+  A: 'A',
+  E: 'E'
+};
+
+/**
+ * Misc constants
+ */
+const constants = {
+  BEATS_PER_BAR: 4
+};
+
+/**
  * Convert sharps to the appropriate flat key
  * to make lookups simpler
  */
@@ -46,13 +78,10 @@ const findByName = function(name) {
   let splitBy = '_';
   let root;
   let tonality;
-  let extensions = [
-    5, 7, 'dim', 'maj7', 'min7',
-  ];
 
   name = name.replace(/\s/g, splitBy);
 
-  _(extensions).each(ext => {
+  _(supportedChords).each(ext => {
     if (name.includes(ext)) {
       name = name.replace(splitBy, '');
       root = name.split(ext)[0];
@@ -70,19 +99,6 @@ const findByName = function(name) {
 
   root = convertAccidental(root);
   return chordMap[root][tonality];
-};
-
-const strings = {
-  e: 'e',
-  B: 'B',
-  G: 'G',
-  D: 'D',
-  A: 'A',
-  E: 'E'
-};
-
-const constants = {
-  BEATS_PER_BAR: 4
 };
 
 /**
@@ -196,14 +212,23 @@ Vue.component('tab-bar', {
        // Convert any chords passed in by name into the approriate shape
       this.bar.chords = this.bar.chords.map(chord => {
         let shapes = [];
+        let extensions = _(supportedChords)
+        .sortBy(ext => ext.length)
+        .reverse()
+        .value();
 
-        if (chord.includes('major')) shapes = findByName(chord);
-        if (chord.includes('minor')) shapes = findByName(chord);
-        if (chord.includes('maj7')) shapes = findByName(chord);
-        if (chord.includes('min7')) shapes = findByName(chord);
-        if (chord.includes(' 7')) shapes = findByName(chord);
-        if (chord.includes(' 5')) shapes = findByName(chord);
-        if (chord.includes('dim')) shapes = findByName(chord);
+        _(extensions).each(ext => {
+          // Prepend single character extensions with a space
+          // to protect against unwanted matches.
+          // eg 7 without the space would match against "x79997"
+          if (ext.length === 1) {
+            ext = ' ' + ext;
+          }
+
+          if (chord.includes(ext)) {
+            shapes = findByName(chord)
+          };
+        });
 
         if (shapes.length) {
           let index = _.random(0, shapes.length - 1);
