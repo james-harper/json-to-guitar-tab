@@ -259,7 +259,6 @@ new Vue({
 
 var editor = new Behave({
     textarea: document.getElementById('jsonEditor'),
-    autoIndent: false,
     tabSize: 2,
     overwrite: false
 });
