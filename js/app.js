@@ -237,13 +237,6 @@ Vue.component('tab',{
   }
 });
 
-const examples = [
-  progression,
-  progression_1,
-  progression_2,
-  progression_3,
-];
-
 new Vue({
   el: "#app",
   data: {

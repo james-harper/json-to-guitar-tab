@@ -1,4 +1,6 @@
-const progression = [
+const examples = [];
+
+examples.push([
   {
     chords: ['D major'],
     pattern: 'x-------'
@@ -31,10 +33,10 @@ const progression = [
     chords: ['A major'],
     pattern: 'x-x-'
   },
-];
+]);
 
 // vi–IV–I–V
-const progression_1 = [
+examples.push([
   {
     chords: ["A minor"],
     pattern: 'x---'
@@ -51,10 +53,10 @@ const progression_1 = [
     chords: ['G major', "E minor"],
     pattern: 'x---'
   }
-];
+]);
 
 // I-V-vi-IV
-const progression_2 = [
+examples.push([
   {
     chords: ['-57775'],
     pattern: 'x---'
@@ -71,9 +73,9 @@ const progression_2 = [
     chords: ['355433'],
     pattern: 'x-x-'
   }
-];
+]);
 
-const progression_3 = [
+examples.push([
   {
     chords: ['C 5'],
     pattern: 'x-x-'
@@ -90,4 +92,4 @@ const progression_3 = [
     chords: ['F 5'],
     pattern: 'x-x-'
   }
-];
+]);
