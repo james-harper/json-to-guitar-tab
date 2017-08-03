@@ -13,6 +13,13 @@
         .bar { float: left}
         span.tab-line { display: block }
         .tab-section { font-family: courier new; font-size: 15px}
+        textarea.terminal {
+            background-color: #000 !important;
+            border: 1px solid #000;
+            color: #00ff00 !important;
+            padding: 8px;
+            font-family: courier new !important;
+        }
     </style>
 
     <body>
@@ -30,7 +37,7 @@
             </p>
         </div>
         <div id="app" class="container">
-            <textarea v-model="json" class="form-control" rows="7" cols="25">{{json}}</textarea>
+            <textarea v-model="json" class="form-control terminal" rows="8" cols="25">{{json}}</textarea>
             <hr/>
             <tab :progression="progression"></tab>
 
