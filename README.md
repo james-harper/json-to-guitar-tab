@@ -1,5 +1,5 @@
 # JSON to Guitar Tab
-This is a tool to generate guitar tablature using JSON notatiion.
+This is a tool to generate guitar tablature using JSON notation.
 
 ## Usage
 ```json
@@ -33,7 +33,7 @@ For example, an `E major` chord could be written as `022100`. Fret numbers are h
 The pattern string allows different rhythms to represented. Currently `4/4` is the only time signature supported.
 
 - The app assumes that every dash represents a 16th note.
-- For complete control over each bar, a 16th character pattern should be passed. If less characters are passed, then the pattern will repeat to fill out the bar. If the length of the pattern does not divide exactly into 16 then unexpected behaviour could occur.
+- For complete control over each bar, a 16 character pattern should be passed. If less characters are passed, then the pattern will repeat to fill out the bar.
 - `x` is used to represent a note being played in that position. `-` is used to represent rests.
 - A four-to-the-floor pattern would be expressed as `x---x---x---x---`
 - `random` can be passed as a `pattern` to randomly generate a pattern
