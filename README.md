@@ -36,6 +36,7 @@ The pattern string allows different rhythms to represented. Currently `4/4` is t
 - For complete control over each bar, a 16th character pattern should be passed. If less characters are passed, then the pattern will repeat to fill out the bar. If the length of the pattern does not divide exactly into 16 then unexpected behaviour could occur.
 - `x` is used to represent a note being played in that position. `-` is used to represent rests.
 - A four-to-the-floor pattern would be expressed as `x---x---x---x---`
+- `random` can be passed as a `pattern` to randomly generate a pattern
 
 ## Demo
 
