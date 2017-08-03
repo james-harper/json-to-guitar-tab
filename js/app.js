@@ -256,3 +256,19 @@ new Vue({
     this.json = JSON.stringify(JSON.parse(this.json), null, 2);
   }
 });
+
+// Handle tabs in textarea
+(function(){
+var textareas = document.getElementsByTagName('textarea');
+var count = textareas.length;
+for(var i=0;i<count;i++){
+  textareas[i].onkeydown = function(e){
+    if(e.keyCode==9 || e.which==9){
+      e.preventDefault();
+      var s = this.selectionStart;
+      this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+      this.selectionEnd = s+1;
+    }
+  }
+}
+})()
