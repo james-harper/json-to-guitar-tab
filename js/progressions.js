@@ -72,3 +72,22 @@ const progression_2 = [
     pattern: 'x-x-'
   }
 ];
+
+const progression_3 = [
+  {
+    chords: ['C 5'],
+    pattern: 'x-x-'
+  },
+  {
+    chords: ['G 5'],
+    pattern: 'x-x-'
+  },
+  {
+    chords: ['F 5'],
+    pattern: 'x-x-'
+  },
+  {
+    chords: ['F 5'],
+    pattern: 'x-x-'
+  }
+];
