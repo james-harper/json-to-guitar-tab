@@ -10,7 +10,7 @@ This is a tool to generate guitar tablature using JSON notation.
     },
     {
         "chords": ["-57775", "577655"],
-        "pattern": "x--x-x-"
+        "pattern": "x--x--x-"
     }
 ]
 ```
@@ -26,7 +26,7 @@ There are 2 ways that chords can be written.
 The available extensions are `major`, `minor`, `5`, `7`, `maj7`, and `min7`. Any note in the chromatic scale can be used as a root. Flats and sharps should be converted appropriately.
 - Chords can also be written as a 6 character string (`EADGBe`), where each character represents a string on the guitar.
 For example, an `E major` chord could be written as `022100`. Fret numbers are hexadecimal, so frets from 0-15 can be expressed using this notation. A dash `-` should be used to denote strings that are not played as part of a chord and an `x` should be used to denote a muted string.
-- This app was intended to represent chord progressions, rather than being a comprehensive tabbing tool. But single notes can be added by using dashes for the 5 other strings. Eg `-4----`.
+- This app was intended to represent chord progressions, rather than being a comprehensive tabbing tool. But single notes can be added by using dashes for the 5 other strings. Eg `--4---` or leaving any strings after the intended string blank and filling any before with dashes. Eg `--4`.
 
 ### Pattern
 
