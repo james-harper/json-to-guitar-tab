@@ -1,3 +1,6 @@
+/**
+ * The main Vue instance
+ */
 new Vue({
   el: "#app",
   data: {
@@ -13,8 +16,12 @@ new Vue({
   }
 });
 
+/**
+ * Configure JSON textarea to behave more like a text editor.
+ * Eg tab indentation and shift+tab outdentation.
+ */
 var editor = new Behave({
-    textarea: document.getElementById('jsonEditor'),
-    tabSize: 2,
-    overwrite: false
+  textarea: document.getElementById('jsonEditor'),
+  tabSize: 2,
+  overwrite: false
 });

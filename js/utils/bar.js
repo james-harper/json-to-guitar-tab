@@ -1,3 +1,11 @@
+/**
+ * Render a bar of tablature for a single string
+ *
+ * @param {string[]} chords The chords that should be drawn in this bar
+ * @param {string} string The guitar string that is being drawn
+ * @param {string} pattern The rhythm that should be drawn
+ * @param {number} index Used to determine if this bar will be at the start of a line
+ */
 function drawBar(chords, string, pattern, index) {
   pattern = makePatternFitBar(pattern);
 

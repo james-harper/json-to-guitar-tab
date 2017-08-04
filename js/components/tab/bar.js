@@ -15,6 +15,12 @@ Vue.component('tab-bar', {
   `,
   props: ['bar', 'index', 'showChordNames'],
   methods: {
+    /**
+     * Render one bar of tablature for a single string
+     *
+     * @param {string} string
+     * @returns {string}
+     */
     draw(string) {
       this.convertNamedtoShapes();
 
@@ -24,14 +30,17 @@ Vue.component('tab-bar', {
 
       return drawBar(this.bar.chords, string, this.bar.pattern, this.index);
     },
+    /**
+     * Convert any chords passed in by name into the approriate shape
+     * @returns {string}
+     */
     convertNamedtoShapes() {
-       // Convert any chords passed in by name into the approriate shape
       this.bar.chords = this.bar.chords.map(chord => {
-      let shapes = [];
-      let extensions = _(supportedChords)
-      .sortBy(ext => ext.length)
-      .reverse()
-      .value();
+        let shapes = [];
+        let extensions = _(supportedChords)
+        .sortBy(ext => ext.length)
+        .reverse()
+        .value();
 
         _(extensions).each(ext => {
           // Prepend single character extensions with a space

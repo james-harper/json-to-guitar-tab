@@ -1,25 +1,31 @@
 /**
- * Convert sharps to the appropriate flat key
- * to make lookups simpler
+ * Normalise notes to simplify lookups. Sharps will be converted to flats.
+ *
+ * @param {string} note
+ * @returns {string} The converted note
  */
-function convertAccidental(key) {
-  if (key.length === 1) { return _.toUpper(key); }
+function convertAccidental(note) {
+  if (note.length === 1) { return _.toUpper(note); }
 
-  let converted = _.toUpper(key.charAt(0));
-  if (key.charAt(1) === '#') {
+  let converted = _.toUpper(note.charAt(0));
+  if (note.charAt(1) === '#') {
     converted = String.fromCharCode(converted.charCodeAt() + 1)
-    key = (converted < 'H') ? converted : 'A';
+    note = (converted < 'H') ? converted : 'A';
 
-    if (!['C', 'F'].includes(key)) {
-      key += 'b';
+    if (!['C', 'F'].includes(note)) {
+      note += 'b';
     }
   }
 
-  return key;
+  return note;
 };
 
 /**
- * Check if the supplied character is valid
+ * Check if the supplied character is valid.
+ * 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f, -, and x are permitted.
+ *
+ * @param {string} note
+ * @returns {boolean}
  */
 function isValid(note) {
   if (note === 'x' || note === 'X') return true;

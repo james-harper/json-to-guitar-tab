@@ -1,4 +1,10 @@
-// Use hexadecimal
+/**
+ * Map of currently supported chord shapes
+ *
+ * Hexadecimal numbers are used to represent frets
+ *
+ * @todo Add more chords
+ */
 const chordMap = {
   "A": {
     major: ["-02220", "577655"],

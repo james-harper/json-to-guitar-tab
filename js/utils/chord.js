@@ -1,5 +1,8 @@
 /**
- * Find the name of a chord from its shape. Eg '-32010'
+ * Find the name of a chord from its shape.
+ *
+ * @param {string} target The chord shape that is being matched against a name. Eg '-32010'
+ * @returns {string} Either the name of the chord or '?' if no match was found.
  */
 function findByShape(target) {
   let result = '?';
@@ -20,7 +23,10 @@ function findByShape(target) {
 };
 
 /**
- * Find chord shape from its name. Eg 'D major'
+ * Find chord shape from its name.
+ *
+ * @param {string} name The name of the chord. Eg D major
+ * @returns {string[]} Any shapes that match the given name
  */
 function findByName(name) {
   let splitBy = '_';
@@ -52,6 +58,9 @@ function findByName(name) {
 /**
  * Determine whether a chord has been passed by name
  * (As opposed to shape)
+ *
+ * @param {string} chord
+ * @returns {boolean}
  */
 function isNamed(chord) {
   let match = false;

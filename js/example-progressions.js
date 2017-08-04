@@ -1,6 +1,12 @@
+/**
+ * Example chord progressions.
+ * One of these will be loaded at random on page load.
+ */
 const examples = [];
 
-// Pachelbel's Canon in D
+/**
+ * Pachelbel's Canon in D
+ */
 examples.push([
   {
     chords: ['D major'],
@@ -36,7 +42,9 @@ examples.push([
   },
 ]);
 
-// vi–IV–I–V
+/**
+ * vi–IV–I–V
+ */
 examples.push([
   {
     chords: ["A minor"],
@@ -56,7 +64,10 @@ examples.push([
   }
 ]);
 
-// I-V-vi-IV
+/**
+ * I-V-vi-IV
+ * @see https://www.youtube.com/watch?v=5pidokakU4I
+ */
 examples.push([
   {
     chords: ['-57775'],
@@ -76,7 +87,9 @@ examples.push([
   }
 ]);
 
-// Generic Pop Punky thing
+/**
+ * Generic Pop Punky thing
+ */
 examples.push([
   {
     chords: ['C 5'],
