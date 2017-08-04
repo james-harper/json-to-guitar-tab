@@ -1,5 +1,6 @@
 const examples = [];
 
+// Pachelbel's Canon in D
 examples.push([
   {
     chords: ['D major'],
@@ -75,6 +76,7 @@ examples.push([
   }
 ]);
 
+// Generic Pop Punky thing
 examples.push([
   {
     chords: ['C 5'],
