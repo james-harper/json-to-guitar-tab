@@ -1,7 +1,7 @@
 /**
  * Find the name of a chord from its shape. Eg '-32010'
  */
-const findByShape = function(target) {
+function findByShape(target) {
   let result = '?';
 
   _(chordMap).each((chords,root) => {
@@ -22,7 +22,7 @@ const findByShape = function(target) {
 /**
  * Find chord shape from its name. Eg 'D major'
  */
-const findByName = function(name) {
+function findByName(name) {
   let splitBy = '_';
   let root;
   let tonality;
@@ -48,3 +48,23 @@ const findByName = function(name) {
   root = convertAccidental(root);
   return chordMap[root][tonality];
 };
+
+/**
+ * Determine whether a chord has been passed by name
+ * (As opposed to shape)
+ */
+function isNamed(chord) {
+  let match = false;
+
+  supportedChords.forEach(ext => {
+    if (ext.length === 1) {
+      ext = ' ' + ext;
+    }
+
+    if (chord.includes(ext)) {
+      match = true
+    }
+  });
+
+  return match;
+}
