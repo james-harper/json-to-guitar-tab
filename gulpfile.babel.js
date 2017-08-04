@@ -29,6 +29,7 @@ gulp.task('scripts', function() {
 
   gulp.src('js/vendor/*.js')
   .pipe(concat('vendor.all.js'))
+  .pipe(uglify())
   .pipe(gulp.dest(compiledDirectory+'js'));
 
   return gulp.src(jsFiles)
