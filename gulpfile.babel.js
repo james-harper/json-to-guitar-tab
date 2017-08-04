@@ -3,6 +3,7 @@
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
+const minifyCSS = require('gulp-minify-css');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 
@@ -22,6 +23,10 @@ let jsFiles = [
 ];
 
 gulp.task('scripts', function() {
+  gulp.src('css/app.css')
+  .pipe(minifyCSS())
+  .pipe(gulp.dest('css/compiled'));
+
   gulp.src('js/vendor/*.js')
   .pipe(concat('vendor.all.js'))
   .pipe(gulp.dest(compiledDirectory));
