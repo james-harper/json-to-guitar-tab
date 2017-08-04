@@ -27,7 +27,7 @@ const findByName = function(name) {
   let root;
   let tonality;
 
-  name = name.replace(/\s/g, splitBy);
+  name = name.replace(/\s/g, splitBy).toLowerCase();
 
   _(supportedChords).each(ext => {
     if (name.includes(ext)) {

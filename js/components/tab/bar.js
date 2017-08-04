@@ -26,11 +26,11 @@ Vue.component('tab-bar', {
     convertNamedtoShapes() {
        // Convert any chords passed in by name into the approriate shape
       this.bar.chords = this.bar.chords.map(chord => {
-        let shapes = [];
-        let extensions = _(supportedChords)
-        .sortBy(ext => ext.length)
-        .reverse()
-        .value();
+      let shapes = [];
+      let extensions = _(supportedChords)
+      .sortBy(ext => ext.length)
+      .reverse()
+      .value();
 
         _(extensions).each(ext => {
           // Prepend single character extensions with a space
@@ -40,7 +40,7 @@ Vue.component('tab-bar', {
             ext = ' ' + ext;
           }
 
-          if (chord.includes(ext)) {
+          if (chord.toLowerCase().includes(ext)) {
             shapes = findByName(chord)
           };
         });
