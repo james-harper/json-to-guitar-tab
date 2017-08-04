@@ -1,7 +1,10 @@
+'use strict';
+
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 
 let compiledDirectory = 'js/compiled';
 
@@ -25,5 +28,9 @@ gulp.task('scripts', function() {
 
   return gulp.src(jsFiles)
   .pipe(concat('all.js'))
-  .pipe(gulp.dest(compiledDirectory));
+  .pipe(babel({ presets: ['es2015'] }))
+  .pipe(gulp.dest(compiledDirectory))
+  .pipe(rename('all.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest(compiledDirectory));;
 });
