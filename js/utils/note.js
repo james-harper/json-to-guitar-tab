@@ -1,5 +1,8 @@
 const Note = {};
 
+Note.FLAT = 'b';
+Note.SHARP = '#';
+
 /**
  * Normalise notes to simplify lookups. Sharps will be converted to flats.
  *
@@ -10,12 +13,12 @@ Note.convertAccidental = note => {
   if (note.length === 1) { return _.toUpper(note); }
 
   let converted = _.toUpper(note.charAt(0));
-  if (note.charAt(1) === '#') {
+  if (note.charAt(1) === Note.SHARP) {
     converted = String.fromCharCode(converted.charCodeAt() + 1)
     note = (converted < 'H') ? converted : 'A';
 
     if (!['C', 'F'].includes(note)) {
-      note += 'b';
+      note += Note.FLAT;
     }
   }
 
