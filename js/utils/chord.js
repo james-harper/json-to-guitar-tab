@@ -54,7 +54,7 @@ Chord.findByName = name => {
   }
 
   root = Note.convertAccidental(root);
-  return chordMap[root][tonality];
+  return chordMap[_.capitalize(root)][tonality];
 };
 
 /**
