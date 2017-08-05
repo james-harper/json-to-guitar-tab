@@ -3,7 +3,7 @@ Vue.component('tab-bar', {
   <span>
     <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">
       {{ index > 0 ? ' | ' : ''}}
-      {{chord.length === 6 && !isNamed(chord) ? findByShape(chord) : chord}}
+      {{chord.length === 6 && !Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}
     </span>
     <span class="tab-line">{{draw(strings.e)}}</span>
     <span class="tab-line">{{draw(strings.B)}}</span>
@@ -25,10 +25,10 @@ Vue.component('tab-bar', {
       this.convertNamedtoShapes();
 
       if (this.bar.pattern.toLowerCase() === 'random') {
-        this.bar.pattern = makeRandomPattern();
+        this.bar.pattern = Pattern.random();
       }
 
-      return drawBar(this.bar.chords, string, this.bar.pattern, this.index);
+      return Bar.draw(this.bar.chords, string, this.bar.pattern, this.index);
     },
     /**
      * Convert any chords passed in by name into the approriate shape
@@ -51,7 +51,7 @@ Vue.component('tab-bar', {
           }
 
           if (chord.toLowerCase().includes(ext)) {
-            shapes = findByName(chord)
+            shapes = Chord.findByName(chord)
           };
         });
 

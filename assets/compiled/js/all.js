@@ -25,6 +25,8 @@ var strings = {
 var constants = {
   BEATS_PER_BAR: 4
 };
+var Bar = {};
+
 /**
  * Render a bar of tablature for a single string
  *
@@ -33,8 +35,8 @@ var constants = {
  * @param {string} pattern The rhythm that should be drawn
  * @param {number} index Used to determine if this bar will be at the start of a line
  */
-function drawBar(chords, string, pattern, index) {
-  pattern = makePatternFitBar(pattern);
+Bar.draw = function (chords, string, pattern, index) {
+  pattern = Pattern.fitToBar(pattern);
 
   var note = '-';
   var output = '';
@@ -76,7 +78,7 @@ function drawBar(chords, string, pattern, index) {
       note = parseInt('0x' + note, 16);
     }
 
-    if (!isValid(note)) {
+    if (!Note.isValid(note)) {
       note = '-';
     }
 
@@ -89,14 +91,16 @@ function drawBar(chords, string, pattern, index) {
   output += '|';
 
   return output;
-}
+};
+var Chord = {};
+
 /**
  * Find the name of a chord from its shape.
  *
  * @param {string} target The chord shape that is being matched against a name. Eg '-32010'
  * @returns {string} Either the name of the chord or '?' if no match was found.
  */
-function findByShape(target) {
+Chord.findByShape = function (target) {
   var result = '?';
 
   _(chordMap).each(function (chords, root) {
@@ -120,7 +124,7 @@ function findByShape(target) {
  * @param {string} name The name of the chord. Eg D major
  * @returns {string[]} Any shapes that match the given name
  */
-function findByName(name) {
+Chord.findByName = function (name) {
   var splitBy = '_';
   var root = void 0;
   var tonality = void 0;
@@ -148,7 +152,7 @@ function findByName(name) {
     tonality = 'major';
   }
 
-  root = convertAccidental(root);
+  root = Note.convertAccidental(root);
   return chordMap[root][tonality];
 };
 
@@ -159,7 +163,7 @@ function findByName(name) {
  * @param {string} chord
  * @returns {boolean}
  */
-function isNamed(chord) {
+Chord.isNamed = function (chord) {
   var match = false;
 
   supportedChords.forEach(function (ext) {
@@ -173,7 +177,16 @@ function isNamed(chord) {
   });
 
   return match;
-}
+};
+
+/**
+ * @param {string} chord Accepts either a name or a shape
+ * @returns {string|string[]}
+ */
+Chord.find = function (chord) {
+  return Chord.isNamed(chord) ? Chord.findByName(chord) : Chord.findByShape(chord);
+};
+var Note = {};
 
 /**
  * Normalise notes to simplify lookups. Sharps will be converted to flats.
@@ -181,7 +194,7 @@ function isNamed(chord) {
  * @param {string} note
  * @returns {string} The converted note
  */
-function convertAccidental(note) {
+Note.convertAccidental = function (note) {
   if (note.length === 1) {
     return _.toUpper(note);
   }
@@ -206,7 +219,7 @@ function convertAccidental(note) {
  * @param {string} note
  * @returns {boolean}
  */
-function isValid(note) {
+Note.isValid = function (note) {
   if (note === 'x' || note === 'X') return true;
   if (note === '-') return true;
   if (isNaN(note)) return false;
@@ -214,14 +227,16 @@ function isValid(note) {
   if (['a', 'b', 'c', 'd', 'e', 'f'].includes(note.toLowerCase())) return true;
 
   return false;
-}
+};
+var Pattern = {};
+
 /**
  * Either truncate or pad the pattern so it reaches the appropriate length.
  *
  * @param {string} pattern A rhythmic pattern
  * @returns {string}
  */
-function makePatternFitBar(pattern) {
+Pattern.fitToBar = function (pattern) {
   if (pattern.length < 1) {
     pattern = '-';
   }
@@ -237,13 +252,14 @@ function makePatternFitBar(pattern) {
   }
 
   return pattern;
-}
+};
 
 /**
  * Randomly generate a rhythmic pattern
+ * 
  * @returns {string} A random pattern
  */
-function makeRandomPattern() {
+Pattern.random = function () {
   var desiredPatternLength = constants.BEATS_PER_BAR * 4;
   var pattern = 'x';
 
@@ -252,7 +268,7 @@ function makeRandomPattern() {
   }
 
   return pattern;
-}
+};
 /**
  * Map of currently supported chord shapes
  *
@@ -459,7 +475,7 @@ examples.push([{
 }]);
 
 Vue.component('tab-bar', {
-  template: '\n  <span>\n    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">\n      {{ index > 0 ? \' | \' : \'\'}}\n      {{chord.length === 6 && !isNamed(chord) ? findByShape(chord) : chord}}\n    </span>\n    <span class="tab-line">{{draw(strings.e)}}</span>\n    <span class="tab-line">{{draw(strings.B)}}</span>\n    <span class="tab-line">{{draw(strings.G)}}</span>\n    <span class="tab-line">{{draw(strings.D)}}</span>\n    <span class="tab-line">{{draw(strings.A)}}</span>\n    <span class="tab-line">{{draw(strings.E)}}</span>\n  </span>\n  ',
+  template: '\n  <span>\n    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">\n      {{ index > 0 ? \' | \' : \'\'}}\n      {{chord.length === 6 && !Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}\n    </span>\n    <span class="tab-line">{{draw(strings.e)}}</span>\n    <span class="tab-line">{{draw(strings.B)}}</span>\n    <span class="tab-line">{{draw(strings.G)}}</span>\n    <span class="tab-line">{{draw(strings.D)}}</span>\n    <span class="tab-line">{{draw(strings.A)}}</span>\n    <span class="tab-line">{{draw(strings.E)}}</span>\n  </span>\n  ',
   props: ['bar', 'index', 'showChordNames'],
   methods: {
     /**
@@ -472,10 +488,10 @@ Vue.component('tab-bar', {
       this.convertNamedtoShapes();
 
       if (this.bar.pattern.toLowerCase() === 'random') {
-        this.bar.pattern = makeRandomPattern();
+        this.bar.pattern = Pattern.random();
       }
 
-      return drawBar(this.bar.chords, string, this.bar.pattern, this.index);
+      return Bar.draw(this.bar.chords, string, this.bar.pattern, this.index);
     },
 
     /**
@@ -498,7 +514,7 @@ Vue.component('tab-bar', {
           }
 
           if (chord.toLowerCase().includes(ext)) {
-            shapes = findByName(chord);
+            shapes = Chord.findByName(chord);
           };
         });
 

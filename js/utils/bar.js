@@ -1,3 +1,5 @@
+const Bar = {};
+
 /**
  * Render a bar of tablature for a single string
  *
@@ -6,8 +8,8 @@
  * @param {string} pattern The rhythm that should be drawn
  * @param {number} index Used to determine if this bar will be at the start of a line
  */
-function drawBar(chords, string, pattern, index) {
-  pattern = makePatternFitBar(pattern);
+Bar.draw = (chords, string, pattern, index) => {
+  pattern = Pattern.fitToBar(pattern);
 
   let note = '-';
   let output = '';
@@ -43,7 +45,7 @@ function drawBar(chords, string, pattern, index) {
       note = parseInt('0x'+note, 16);
     }
 
-    if (!isValid(note)) {
+    if (!Note.isValid(note)) {
       note = '-'
     }
 

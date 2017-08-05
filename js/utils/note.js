@@ -1,10 +1,12 @@
+const Note = {};
+
 /**
  * Normalise notes to simplify lookups. Sharps will be converted to flats.
  *
  * @param {string} note
  * @returns {string} The converted note
  */
-function convertAccidental(note) {
+Note.convertAccidental = note => {
   if (note.length === 1) { return _.toUpper(note); }
 
   let converted = _.toUpper(note.charAt(0));
@@ -27,7 +29,7 @@ function convertAccidental(note) {
  * @param {string} note
  * @returns {boolean}
  */
-function isValid(note) {
+Note.isValid = note => {
   if (note === 'x' || note === 'X') return true;
   if (note === '-') return true;
   if (isNaN(note)) return false;

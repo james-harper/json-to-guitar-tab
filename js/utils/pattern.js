@@ -1,10 +1,12 @@
+const Pattern = {};
+
 /**
  * Either truncate or pad the pattern so it reaches the appropriate length.
  *
  * @param {string} pattern A rhythmic pattern
  * @returns {string}
  */
-function makePatternFitBar(pattern) {
+Pattern.fitToBar = pattern => {
   if (pattern.length < 1) { pattern = '-';}
 
   let desiredPatternLength = constants.BEATS_PER_BAR * 4;
@@ -22,9 +24,10 @@ function makePatternFitBar(pattern) {
 
 /**
  * Randomly generate a rhythmic pattern
+ * 
  * @returns {string} A random pattern
  */
-function makeRandomPattern() {
+Pattern.random = () => {
   let desiredPatternLength = constants.BEATS_PER_BAR * 4;
   let pattern = 'x';
 

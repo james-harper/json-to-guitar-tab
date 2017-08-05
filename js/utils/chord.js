@@ -1,10 +1,12 @@
+const Chord = {};
+
 /**
  * Find the name of a chord from its shape.
  *
  * @param {string} target The chord shape that is being matched against a name. Eg '-32010'
  * @returns {string} Either the name of the chord or '?' if no match was found.
  */
-function findByShape(target) {
+Chord.findByShape = target => {
   let result = '?';
 
   _(chordMap).each((chords,root) => {
@@ -28,7 +30,7 @@ function findByShape(target) {
  * @param {string} name The name of the chord. Eg D major
  * @returns {string[]} Any shapes that match the given name
  */
-function findByName(name) {
+Chord.findByName = name => {
   let splitBy = '_';
   let root;
   let tonality;
@@ -51,7 +53,7 @@ function findByName(name) {
     tonality = 'major';
   }
 
-  root = convertAccidental(root);
+  root = Note.convertAccidental(root);
   return chordMap[root][tonality];
 };
 
@@ -62,7 +64,7 @@ function findByName(name) {
  * @param {string} chord
  * @returns {boolean}
  */
-function isNamed(chord) {
+Chord.isNamed = chord => {
   let match = false;
 
   supportedChords.forEach(ext => {
@@ -76,4 +78,12 @@ function isNamed(chord) {
   });
 
   return match;
+}
+
+/**
+ * @param {string} chord Accepts either a name or a shape
+ * @returns {string|string[]}
+ */
+Chord.find = chord => {
+    return Chord.isNamed(chord) ? Chord.findByName(chord) : Chord.findByShape(chord);
 }
