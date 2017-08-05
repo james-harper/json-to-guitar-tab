@@ -1,39 +1,39 @@
 const Pattern = {};
 
+Pattern.desiredLength = constants.BEATS_PER_BAR * 4;
+
 /**
  * Either truncate or pad the pattern so it reaches the appropriate length.
  *
- * @param {string} pattern A rhythmic pattern
+ * @param {string} rhythm A rhythmic pattern
  * @returns {string}
  */
-Pattern.fitToBar = pattern => {
-  if (pattern.length < 1) { pattern = '-';}
+Pattern.fitToBar = rhythm => {
+  if (rhythm.length < 1) { rhythm = '-';}
 
-  let desiredPatternLength = constants.BEATS_PER_BAR * 4;
-  pattern = _.repeat(pattern, desiredPatternLength/pattern.length);
+  rhythm = _.repeat(rhythm, Pattern.desiredLength/rhythm.length);
 
-  if (pattern.length < desiredPatternLength) {
-    let padLength = desiredPatternLength - pattern.length;
-    pattern += pattern.substring(0, padLength);
+  if (rhythm.length < Pattern.desiredLength) {
+    let padLength = Pattern.desiredLength - rhythm.length;
+    rhythm += rhythm.substring(0, padLength);
   } else {
-    pattern = pattern.substring(0,desiredPatternLength);
+    rhythm = rhythm.substring(0,Pattern.desiredLength);
   }
 
-  return pattern;
+  return rhythm;
 }
 
 /**
  * Randomly generate a rhythmic pattern
- * 
+ *
  * @returns {string} A random pattern
  */
 Pattern.random = () => {
-  let desiredPatternLength = constants.BEATS_PER_BAR * 4;
-  let pattern = 'x';
+  let rhythm = 'x';
 
-  for (let i = 0; i < desiredPatternLength - 1; i++) {
-    pattern += (_.random(1) > 0) ? 'x' : '-';
+  for (let i = 0; i < Pattern.desiredLength - 1; i++) {
+    rhythm += (_.random(1) > 0) ? 'x' : '-';
   }
 
-  return pattern;
+  return rhythm;
 }
