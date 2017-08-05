@@ -12,7 +12,7 @@ new Vue({
     }
   },
   created() {
-    this.json = JSON.stringify(JSON.parse(this.json), null, 2);
+    this.json = Helpers.prettyPrint(this.json);
   }
 });
 
