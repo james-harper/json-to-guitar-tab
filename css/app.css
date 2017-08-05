@@ -1,37 +1,40 @@
 .bar {
-    float: left
+  float: left
 }
 
 span.tab-line {
-    display: block
+  display: block
 }
 
-.tab-section {
-    font-family: courier new;
-    font-size: 15px
+.courier-new {
+  font-family: courier new;
+  font-size: 15px;
+}
+
+div.tab-section {  
+  width: 100%;
+  padding: 0 10px;
 }
 
 .tab-row {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 textarea.terminal {
-    background-color: #000 !important;
-    border: 1px solid #000;
-    color: #00ff00 !important;
-    padding: 8px;
-    font-family: courier new !important;
+  background-color: #000 !important;
+  border: 1px solid #000;
+  color: #00ff00 !important;
+  padding: 8px;
+  font-family: courier new !important;
 }
 
-div.tab-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 0 10px;
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 a.email-link {
-    color: #111 !important;
+  color: #111 !important;
 }
