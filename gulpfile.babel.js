@@ -6,7 +6,7 @@ const minifyCSS = require('gulp-minify-css');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 
-let compiledDirectory = 'assets/compiled/';
+let compiledDirectory = type => 'assets/compiled/' + type;
 
 let jsFiles = [
   'js/constants.js',
@@ -24,16 +24,16 @@ let jsFiles = [
 gulp.task('scripts', function() {
   gulp.src('css/all.css')
   .pipe(minifyCSS())
-  .pipe(gulp.dest(compiledDirectory+'css'));
+  .pipe(gulp.dest(compiledDirectory('css')));
 
   gulp.src('js/vendor/*.js')
   .pipe(concat('vendor.all.js'))
   .pipe(uglify())
-  .pipe(gulp.dest(compiledDirectory+'js'));
+  .pipe(gulp.dest(compiledDirectory('js')));
 
   return gulp.src(jsFiles)
   .pipe(concat('all.min.js'))
   .pipe(babel({ presets: ['es2015'] }))
   .pipe(uglify())
-  .pipe(gulp.dest(compiledDirectory+'js'));;
+  .pipe(gulp.dest(compiledDirectory('js')));;
 });
