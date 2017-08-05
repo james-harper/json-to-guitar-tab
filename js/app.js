@@ -12,7 +12,7 @@ new Vue({
     }
   },
   created() {
-    this.json = Helpers.prettyPrint(this.json);
+    this.json = Helpers.JSON.prettyPrint(this.json);
   }
 });
 

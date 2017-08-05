@@ -14,7 +14,7 @@ Note.convertAccidental = note => {
 
   let converted = _.toUpper(note.charAt(0));
   if (note.charAt(1) === Note.SHARP) {
-    converted = String.fromCharCode(converted.charCodeAt() + 1)
+    converted = Helpers.Character.next(converted);
     note = (converted < 'H') ? converted : 'A';
 
     if (!['C', 'F'].includes(note)) {
