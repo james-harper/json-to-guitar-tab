@@ -1,7 +1,11 @@
 Vue.component('tab-bar', {
   template:`
   <span>
-    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">
+    <span
+      v-if="showChordNames"
+      v-for="(chord, index) in bar.chords"
+      style="font-size:11px"
+    >
       {{ index > 0 ? ' | ' : ''}}
       {{!Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}
     </span>

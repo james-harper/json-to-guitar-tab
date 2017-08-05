@@ -3,7 +3,8 @@ const Chord = {};
 /**
  * Find the name of a chord from its shape.
  *
- * @param {string} target The chord shape that is being matched against a name. Eg '-32010'
+ * @param {string} target The chord shape that is being matched against a name.
+ *                        Eg '-32010'
  * @returns {string} Either the name of the chord or '?' if no match was found.
  */
 Chord.findByShape = target => {

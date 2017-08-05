@@ -3,7 +3,7 @@ Vue.component('tab',{
   <div class="tab-section">
     <span v-for="(chunk, index) in chunked" class="row tab-row">
       <span v-for="(bar, index) in chunk" class="bar">
-        <tab-bar :index="index" :bar="bar" :showChordNames="showChordNames"></tab-bar>
+        <tab-bar :index="index" :bar="bar" :showChordNames="showChordNames" />
       </span>
     </span>
   </div>

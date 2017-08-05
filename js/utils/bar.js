@@ -6,7 +6,7 @@ const Bar = {};
  * @param {string[]} chords The chords that should be drawn in this bar
  * @param {string} string The guitar string that is being drawn
  * @param {string} pattern The rhythm that should be drawn
- * @param {number} index Used to determine if this bar will be at the start of a line
+ * @param {number} index Used to check if bar is at the start of a new line
  */
 Bar.draw = (chords, string, pattern, index) => {
   pattern = Pattern.fitToBar(pattern);
@@ -49,7 +49,10 @@ Bar.draw = (chords, string, pattern, index) => {
       note = '-'
     }
 
-    let dontOutput = (note >= 10 && pattern[i-1] !== '-' && pattern[i-1] !== undefined);
+    let dontOutput = (
+      (note >= 10 && pattern[i-1] !== '-') && (pattern[i-1] !== undefined)
+    );
+
     if (!dontOutput) {
       output += (pattern[i] !== '-') ? note : '-';
     }
