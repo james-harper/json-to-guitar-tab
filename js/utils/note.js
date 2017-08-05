@@ -37,7 +37,5 @@ Note.isValid = note => {
   if (note === '-') return true;
   if (isNaN(note)) return false;
   if (_.isNumber(note)) return true;
-  if (['a', 'b', 'c', 'd', 'e', 'f'].includes(note.toLowerCase())) return true;
-
-  return false;
+  return (['a', 'b', 'c', 'd', 'e', 'f'].includes(note.toLowerCase()));
 }
