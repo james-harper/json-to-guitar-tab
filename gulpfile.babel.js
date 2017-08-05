@@ -10,14 +10,10 @@ let compiledDirectory = type => 'assets/compiled/' + type;
 
 let jsFiles = [
   'js/constants.js',
-  'js/utils/bar.js',
-  'js/utils/chord.js',
-  'js/utils/note.js',
-  'js/utils/pattern.js',
+  'js/utils/*.js',
   'js/chord-map.js',
   'js/example-progressions.js',
-  'js/components/tab/bar.js',
-  'js/components/tab/tab.js',
+  'js/components/**/*.js',
   'js/app.js',
 ];
 
