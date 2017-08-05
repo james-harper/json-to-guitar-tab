@@ -1,9 +1,13 @@
 .bar {
-  float: left
+  float: left;
+}
+
+.text-center {
+  text-align: center;
 }
 
 span.tab-line {
-  display: block
+  display: block;
 }
 
 .courier-new {
@@ -11,7 +15,7 @@ span.tab-line {
   font-size: 15px;
 }
 
-div.tab-section {  
+div.tab-section {
   width: 100%;
   padding: 0 10px;
 }
