@@ -18,7 +18,8 @@ let jsFiles = [
 ];
 
 gulp.task('scripts', function() {
-  gulp.src('css/all.css')
+  gulp.src('css/*.css')
+  .pipe(concat('all.css'))
   .pipe(minifyCSS())
   .pipe(gulp.dest(compiledDirectory('css')));
 
@@ -35,5 +36,5 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('js/**/*.js', ['scripts']);
+    gulp.watch(['js/**/*.js', 'css/*.css'], ['scripts']);
 });
