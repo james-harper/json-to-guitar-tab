@@ -37,3 +37,7 @@ gulp.task('scripts', function() {
   .pipe(uglify())
   .pipe(gulp.dest(compiledDirectory('js')));;
 });
+
+gulp.task('watch', function() {
+    gulp.watch('js/**/*.js', ['scripts']);
+});
