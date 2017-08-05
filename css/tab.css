@@ -1,0 +1,16 @@
+.tab-section {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.tab-row {
+  padding-bottom: 10px;
+}
+
+.tab-row .bar {
+  float: left;
+}
+
+.tab-line {
+  display: block;
+}
