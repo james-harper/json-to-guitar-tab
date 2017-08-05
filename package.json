@@ -7,7 +7,6 @@
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-uglify": "latest",
-    "gulp-rename": "latest",
     "gulp-minify-css": "latest",
     "gulp-babel": "latest",
     "babel-core": "latest",

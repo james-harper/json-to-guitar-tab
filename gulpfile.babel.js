@@ -1,7 +1,6 @@
 'use strict';
 
 const concat = require('gulp-concat');
-const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const minifyCSS = require('gulp-minify-css');
 const gulp = require('gulp');
@@ -33,10 +32,8 @@ gulp.task('scripts', function() {
   .pipe(gulp.dest(compiledDirectory+'js'));
 
   return gulp.src(jsFiles)
-  .pipe(concat('all.js'))
+  .pipe(concat('all.min.js'))
   .pipe(babel({ presets: ['es2015'] }))
-  .pipe(gulp.dest(compiledDirectory+'js'))
-  .pipe(rename('all.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest(compiledDirectory+'js'));;
 });
