@@ -181,10 +181,15 @@ Chord.isNamed = function (chord) {
 
 /**
  * @param {string} chord Accepts either a name or a shape
- * @returns {string|string[]}
+ * @returns {string}
  */
 Chord.find = function (chord) {
-  return Chord.isNamed(chord) ? Chord.findByName(chord) : Chord.findByShape(chord);
+  if (Chord.isNamed(chord)) {
+    var shapes = Chord.findByName(chord);
+    return shapes.length ? _.sample(shapes) : '?';
+  }
+
+  return Chord.findByShape(chord);
 };
 var Note = {};
 
@@ -475,7 +480,7 @@ examples.push([{
 }]);
 
 Vue.component('tab-bar', {
-  template: '\n  <span>\n    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">\n      {{ index > 0 ? \' | \' : \'\'}}\n      {{chord.length === 6 && !Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}\n    </span>\n    <span class="tab-line">{{draw(strings.e)}}</span>\n    <span class="tab-line">{{draw(strings.B)}}</span>\n    <span class="tab-line">{{draw(strings.G)}}</span>\n    <span class="tab-line">{{draw(strings.D)}}</span>\n    <span class="tab-line">{{draw(strings.A)}}</span>\n    <span class="tab-line">{{draw(strings.E)}}</span>\n  </span>\n  ',
+  template: '\n  <span>\n    <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">\n      {{ index > 0 ? \' | \' : \'\'}}\n      {{!Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}\n    </span>\n    <span class="tab-line">{{draw(strings.e)}}</span>\n    <span class="tab-line">{{draw(strings.B)}}</span>\n    <span class="tab-line">{{draw(strings.G)}}</span>\n    <span class="tab-line">{{draw(strings.D)}}</span>\n    <span class="tab-line">{{draw(strings.A)}}</span>\n    <span class="tab-line">{{draw(strings.E)}}</span>\n  </span>\n  ',
   props: ['bar', 'index', 'showChordNames'],
   methods: {
     /**

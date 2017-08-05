@@ -82,8 +82,13 @@ Chord.isNamed = chord => {
 
 /**
  * @param {string} chord Accepts either a name or a shape
- * @returns {string|string[]}
+ * @returns {string}
  */
 Chord.find = chord => {
-    return Chord.isNamed(chord) ? Chord.findByName(chord) : Chord.findByShape(chord);
+    if (Chord.isNamed(chord)) {
+        let shapes = Chord.findByName(chord);
+        return (shapes.length) ? _.sample(shapes) : '?';
+    }
+
+    return Chord.findByShape(chord);
 }

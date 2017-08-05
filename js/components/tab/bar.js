@@ -3,7 +3,7 @@ Vue.component('tab-bar', {
   <span>
     <span v-if="showChordNames" v-for="(chord, index) in bar.chords" style="font-size:11px">
       {{ index > 0 ? ' | ' : ''}}
-      {{chord.length === 6 && !Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}
+      {{!Chord.isNamed(chord) ? Chord.findByShape(chord) : chord}}
     </span>
     <span class="tab-line">{{draw(strings.e)}}</span>
     <span class="tab-line">{{draw(strings.B)}}</span>
